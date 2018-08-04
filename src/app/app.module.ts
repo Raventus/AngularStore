@@ -10,11 +10,17 @@ import { RouterModule } from "@angular/router";
 @NgModule({
   imports: [BrowserModule, StoreModule, 
     RouterModule.forRoot([
-      {path: "store" , component: StoreComponent},
-      {path: "cart", component: CartDetailComponent},
-      {path: "checkout", component: CheckoutComponent},
-      {path: "**", redirectTo:"/store"}
-    ])],
+      {
+          path: "store", component: StoreComponent
+      },
+      {
+          path: "cart", component: CartDetailComponent
+      },
+      {
+          path: "checkout", component: CheckoutComponent
+      },
+      { path: "**", redirectTo: "/store" }
+  ])],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
