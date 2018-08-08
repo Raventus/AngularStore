@@ -1,6 +1,25 @@
 import { Component } from "@angular/core";
+import {Router, ActivatedRoute} from "@angular/router";
+import {NgForm} from "@angular/forms";
+import {Product} from "../model/product.model";
+import {ProductRepository} from "../model/product.repository";
 
 @Component({
-    template: `<div class="bg-info p-a-1"> <h3>Product Editor Placeholder</h3></div>`
+    moduleId: module.id,
+    templateUrl: "productEditor.component.html"
 })
-export class ProductEditorComponent {}
+export class ProductEditorComponent {
+    editing: boolean = false;
+    product: Product = new Product();
+
+    constructor (private repository: ProductRepository, private router: Router, activateRoute: ActivatedRoute) {
+        this.editing = activateRoute.snapshot.params["mode"] == "edit";
+        if (this.editing) {
+            Object.assign (this.product, repository.getProduct(activateRoute.snapshot.params["id"]));
+        }
+    }
+    save (form: NgForm) {
+        this.repository.saveProduct (this.product);
+        this.router.navigateByUrl ("/admin/main/products");
+    }
+}

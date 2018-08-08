@@ -16,6 +16,10 @@ export class AdminComponent {
     constructor (private router: Router, private auth: AuthService)
     {}
 
+    logout () {
+        this.auth.clear();
+        this.router.navigateByUrl("/");
+    }
     authenticate(form: NgForm) {
         if (form.valid) {
             this.auth.authenticate (this.username, this.password).subscribe(response=>{

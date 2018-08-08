@@ -4,9 +4,9 @@ import {AuthService} from "../model/auth.service";
 
 @Injectable ()
 export class AuthGuard {
-    constructor (private router: Router, private auth: AuthService) {}
+    constructor(private router: Router, private auth: AuthService) {}
     
-    canActivated (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         if (!this.auth.authenticated) {
             this.router.navigateByUrl ("/admin/auth");
             return false;
@@ -14,3 +14,7 @@ export class AuthGuard {
         return true;
     }
 }
+
+
+
+
